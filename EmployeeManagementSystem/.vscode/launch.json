@@ -1,0 +1,65 @@
+// {
+//     // 使用 IntelliSense 了解相关属性。 
+//     // 悬停以查看现有属性的描述。
+//     // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+//     "version": "0.2.0",
+//     "configurations": [
+//         {
+//             //"name": "g++.exe build and debug active file",
+//             "name": "Debug",
+//             "type": "cppdbg",
+//             "request": "launch",
+//             //"program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
+//             "program": "${workspaceFolder}\\exe\\${fileBasenameNoExtension}.exe",
+//             "args": [],
+//             "stopAtEntry": false,
+//             "cwd": "${workspaceFolder}\\exe",
+//             "environment": [],
+//             "externalConsole": true,
+//             "internalConsoleOptions": "neverOpen", // 如果不设为neverOpen，调试时会跳到“调试控制台”选项卡，新手调试用不到
+//             "MIMode": "gdb",
+//             "miDebuggerPath": "D:\\Software\\mingw64\\bin\\gdb.exe",		/*修改成自己bin目录下的gdb.exe，这里的路径和电脑里复制的文件目录有一点不一样，这里是两个反斜杠\\*/
+//             /*
+//             "setupCommands": [
+//                 {
+//                     "description": "为 gdb 启用整齐打印",
+//                     "text": "-enable-pretty-printing",
+//                     "ignoreFailures": true
+//                 }
+//             ],
+//             */
+//             "preLaunchTask": "task g++"
+            
+//         }
+//     ]
+// }
+
+
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "g++.exe",                     
+            "type": "cppdbg",                      
+            "request": "launch",                   
+
+            "program": "${workspaceFolder}\\exe\\${fileBasenameNoExtension}.exe",  //需要运行/调试的是当前打开文件的目录中，名字和当前文件相同，但扩展名为exe的程序。和tasks.json中-o后面的目录一样的
+            "args": [],                    
+            "stopAtEntry": false,           //设为true时程序将暂停在程序入口处（即停止main函数开始），一般设置为false    
+            "cwd": "${workspaceFolder}\\exe", //调试程序时的工作目录 。out对应工程目录下的out文件夹
+            "environment": [],              //针对调试的程序，要添加到环境中的环境变量
+            "externalConsole": true,        //调试时是否显示外置控制台窗口（大黑框），一般设置为true显示控制台   
+            "internalConsoleOptions": "neverOpen",   //可以没有
+            "MIMode": "gdb",                // VSCode要使用的调试工具or指示VS代码将连接到的调试器
+            "miDebuggerPath": "D:\\Software\\mingw64\\bin\\gdb.exe",   // miDebugger的路径，注意这里要与MinGw的路径对应 当未指定时，它将搜索操作系统的PATH变量来寻找调试器
+            "setupCommands": [
+                {
+                    "description": "为 gdb 启用整齐打印",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "task g++"  // 调试会话开始前执行的任务，一般为编译程序，c++为g++, c为gcc 这个名字一定要跟tasks.json中的任务名字大小写一致
+        }
+    ]
+}
